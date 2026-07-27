@@ -137,7 +137,7 @@
             <div class="col-lg-6 text-center mt-4 mt-lg-0">
               <div class="ratio ratio-16x9 rounded shadow-sm overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+                  src="bootstrap-learn.webp"
                   alt="Course illustration"
                   class="img-fluid"
                 />
@@ -229,10 +229,10 @@
             <div class="col-lg-4">
               <div class="card h-100 border-primary">
                 <div class="card-body text-center">
-                  <h5 class="card-title">Stylish button group</h5>
+                  <h5 class="card-title">Button group with diff Styles</h5>
                   <p class="card-text">
-                    Use responsive button groups and utility spacing to align
-                    actions.
+                    Use different styles of buttons to give your website an
+                    attractive look.
                   </p>
                   <div
                     class="btn-group"
@@ -255,12 +255,51 @@
             <div class="col-lg-4">
               <div class="card h-100">
                 <div class="card-body">
-                  <h5 class="card-title">Form example</h5>
+                  <h5 class="card-title">Employee Form</h5>
                   <p class="card-text">
-                    Forms are simple to build with spacing, labels, selects, and
-                    validation styles.
+                    Enter your details for fuether processes to hier you.
                   </p>
                   <form>
+                    <div class="mb-3">
+                      <label for="inputName" class="form-label"
+                        >Full Name</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputName"
+                        placeholder="e.g., Ali Ahmed"
+                        required
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="inputPhone" class="form-label"
+                        >Phone Number</label
+                      >
+                      <div class="input-group">
+                        <!-- <span class="input-group-text">+92</span> -->
+                        <input
+                          type="tel"
+                          class="form-control"
+                          id="inputPhone"
+                          placeholder="+923001234567"
+                          pattern="[0-9]{10}"
+                          maxlength="13"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="inputSkills" class="form-label"
+                        >Background Skills</label
+                      >
+                      <textarea
+                        class="form-control"
+                        id="inputSkills"
+                        rows="3"
+                        placeholder="e.g., JavaScript, Python, React, Project Management"
+                      ></textarea>
+                    </div>
                     <div class="mb-3">
                       <label for="exampleInputEmail1" class="form-label"
                         >Email address</label
@@ -271,19 +310,6 @@
                         id="exampleInputEmail1"
                         placeholder="name@example.com"
                       />
-                    </div>
-                    <div class="mb-3">
-                      <label for="exampleSelect" class="form-label"
-                        >Choose course</label
-                      >
-                      <select class="form-select" id="exampleSelect">
-                        <option selected>Beginner</option>
-                        <option>Intermediate</option>
-                        <option>Advanced</option>
-                        <option>High end</option>
-                        <option>New Option</option>
-                        <option>Expert</option>
-                      </select>
                     </div>
                     <button type="submit" class="btn btn-primary">
                       Submit

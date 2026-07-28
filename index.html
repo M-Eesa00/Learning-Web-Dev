@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -157,7 +157,7 @@
             </p>
           </div>
 
-          <div class="row g-4">
+          <div class="row g-4" id="assignment-container">
             <div class="col-md-6 col-lg-3">
               <div class="card h-100 shadow-sm">
                 <div class="card-body">
@@ -182,9 +182,11 @@
             </div>
             <div class="col-md-6 col-lg-3">
               <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                  <h5 class="card-title">Cards &amp; Media</h5>
-                  <p class="card-text">
+                <div class="card-body" id="card-media-div">
+                  <h5 class="card-title" id="card-media-title">
+                    Cards &amp; Media
+                  </h5>
+                  <p class="card-text" id="card-media-p-tag">
                     Use cards to present text, images, and actions in a neat
                     container.
                   </p>
@@ -518,5 +520,62 @@
 
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      var bgColor = "red";
+      const textColor = "#212529";
+      //document.getElementById("card-media-div").class.add = "my-custom-class";
+      //document.getElementById("card-media-div").style.backgroundColor = bgColor;
+      //class selector to change color of all divs
+
+      /* 
+        name: hamza
+        age: 25
+        email: "hamza@example.com"
+        skills: php, javascript, css
+
+      */
+
+      var studentsData = [
+        {
+          name: "hamza",
+          age: 25,
+          email: "hamza@example.com",
+          skills: ["php", "javascript", "css"],
+          address: {
+            street: "123 Main St",
+            city: "Anytown",
+          },
+        },
+        {
+          name: "ali",
+          age: 30,
+          email: "ali@example.com",
+          skills: ["python", "java", "c++"],
+          address: {
+            street: "456 Oak Ave",
+            city: "Somewhere",
+          },
+        },
+        {
+          name: "sara",
+          age: 28,
+          email: "sara@example.com",
+          skills: ["html", "css", "javascript"],
+          address: {
+            street: "789 Pine Rd",
+            city: "Elsewhere",
+          },
+        }
+      ];
+
+      document.getElementById("card-media-title").textContent = "Students Data";
+      document.getElementById("card-media-p-tag").textContent= "";
+      studentsData.forEach(element => {
+        document.getElementById("card-media-p-tag").innerHTML += `<p class="card-text">${element.name}</p>`;
+      });
+
+      //
+    </script>
   </body>
 </html>

@@ -157,6 +157,17 @@
             </p>
           </div>
 
+          <div class="row g-4 mb-3" id="demoDiv"></div>
+          <div class="row my-4">
+            <div id="show-totals" class="col-md-12">
+
+            </div>
+          </div>
+          <div class="row my-4">
+            <div class="col-md-12 text-center">
+              <button class="btn btn-primary" onclick="showStudentsCount()">Show Students Count</button>
+            </div>
+          </div>
           <div class="row g-4" id="assignment-container">
             <div class="col-md-6 col-lg-3">
               <div class="card h-100 shadow-sm">
@@ -540,6 +551,7 @@
         {
           name: "hamza",
           age: 25,
+          status: true,
           email: "hamza@example.com",
           skills: ["php", "javascript", "css"],
           address: {
@@ -550,6 +562,7 @@
         {
           name: "ali",
           age: 30,
+          status: false,
           email: "ali@example.com",
           skills: ["python", "java", "c++"],
           address: {
@@ -560,20 +573,68 @@
         {
           name: "sara",
           age: 28,
+          status: true,
           email: "sara@example.com",
           skills: ["html", "css", "javascript"],
           address: {
             street: "789 Pine Rd",
             city: "Elsewhere",
           },
-        }
+        },
+        {
+          name: "ahmed",
+          age: 22,
+          status: false,
+          email: "ahmed@example.com",
+          skills: ["python", "javascript", "react"],
+          address: {
+            street: "101 Elm St",
+            city: "Nowhere",
+          },
+        },
+        
       ];
 
       document.getElementById("card-media-title").textContent = "Students Data";
-      document.getElementById("card-media-p-tag").textContent= "";
-      studentsData.forEach(element => {
-        document.getElementById("card-media-p-tag").innerHTML += `<p class="card-text">${element.name}</p>`;
+      document.getElementById("card-media-p-tag").textContent = "";
+
+      var container = document.getElementById("demoDiv");
+      var html = "";
+
+      var passCount = failCount = 0;
+
+      studentsData.forEach((element) => {
+
+        if (element.status) {
+          passCount++;
+        } else {
+          failCount++;
+        }
+
+        html += `<div class="col-md-6 col-lg-3">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <h5 class="card-title">${element.name}</h5>
+                  <p class="card-text">
+                    Easily build mobile-first layouts with Bootstrap's grid
+                    system.
+                  </p>
+                </div>
+              </div>
+            </div>`;
       });
+
+      
+
+      container.innerHTML = html;
+
+
+      function showStudentsCount(){
+        var container = document.getElementById("show-totals");
+        var html = "";
+        html +="<div class='col-md-12'><p class='alert alert-warning'>Total Students: "+ studentsData.length +"</p></div>"
+        container.innerHTML = html;
+      }
 
       //
     </script>

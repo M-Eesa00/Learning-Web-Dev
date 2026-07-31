@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -156,24 +156,81 @@
               example components.
             </p>
           </div>
+          <!-- JS DIVS -->
 
           <div class="row g-4 mb-3" id="demoDiv"></div>
           <div class="row my-4">
-            <div id="show-totals" class="col-md-12">
-
-            </div>
+            <div id="show-totals" class="col-md-12"></div>
           </div>
           <div class="row my-4">
             <div class="col-md-12 text-center">
-              <button class="btn btn-primary" onclick="showStudentsCount()">Show Students Count</button>
+              <button
+                class="btn btn-primary"
+                id="all-students"
+                onclick="showStudentsCount()"
+              >
+                Show Students Count
+              </button>
             </div>
           </div>
+          <div id="show-passed" class="col-md-12"></div>
+          <div class="row my-4">
+            <div class="col-md-12 text-center">
+              <button class="btn btn-primary" onclick="gradeCalculation()">
+                Show Grade of Students
+              </button>
+            </div>
+          </div>
+
+          <!-- COMPANY DATA -->
+
+          <div class="container">
+            <div class="row my-4">
+              <div
+                class="company-container col-lg-12 rounded h-100vh"
+                style="background-color: rgb(240, 238, 238)"
+              ></div>
+            </div>
+          </div>
+
+          <!-- ELECTRICITY BILL  GENERATION-->
+
+          <div class="container">
+            <div class="elec-bill row mb-3 gap-3">
+              <div
+                class="col-lg-12 rounded h-100vh"
+                style="background-color: red"
+              ></div>
+            </div>
+          </div>
+
+          <div class="row my-4">
+            <div class="col-md-12 text-center">
+              <button
+                class="btn btn-success"
+                id="bill-calculate"
+                onclick="calculateBaseAmount()"
+              >
+                Calculate Bill
+              </button>
+            </div>
+          </div>
+
+          <p id="bill-amount"></p>
+
+          <!-- <div class="row g-4 mb-3" id="elecDiv"></div>
+          <div class="row my-4">
+            <div id="show-totals" class="col-md-12"></div>
+          </div> -->
+
+          <!-- OTHER DIVS -->
+
           <div class="row g-4" id="assignment-container">
             <div class="col-md-6 col-lg-3">
               <div class="card h-100 shadow-sm">
                 <div class="card-body">
-                  <h5 class="card-title">Responsive Grid</h5>
-                  <p class="card-text">
+                  <h5 class="card-title" id="grid-card">Responsive Grid</h5>
+                  <p class="card-text" id="grid-card-p">
                     Easily build mobile-first layouts with Bootstrap's grid
                     system.
                   </p>
@@ -183,8 +240,10 @@
             <div class="col-md-6 col-lg-3">
               <div class="card h-100 shadow-sm">
                 <div class="card-body">
-                  <h5 class="card-title">Navigation and Div</h5>
-                  <p class="card-text">
+                  <h5 class="card-title" id="Electricity Bills">
+                    Navigation and Div
+                  </h5>
+                  <p class="card-text" id="bill">
                     Create accessible navbars, sidebars, and dropdown menus
                     quickly.
                   </p>
@@ -532,111 +591,6 @@
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-      var bgColor = "red";
-      const textColor = "#212529";
-      //document.getElementById("card-media-div").class.add = "my-custom-class";
-      //document.getElementById("card-media-div").style.backgroundColor = bgColor;
-      //class selector to change color of all divs
-
-      /* 
-        name: hamza
-        age: 25
-        email: "hamza@example.com"
-        skills: php, javascript, css
-
-      */
-
-      var studentsData = [
-        {
-          name: "hamza",
-          age: 25,
-          status: true,
-          email: "hamza@example.com",
-          skills: ["php", "javascript", "css"],
-          address: {
-            street: "123 Main St",
-            city: "Anytown",
-          },
-        },
-        {
-          name: "ali",
-          age: 30,
-          status: false,
-          email: "ali@example.com",
-          skills: ["python", "java", "c++"],
-          address: {
-            street: "456 Oak Ave",
-            city: "Somewhere",
-          },
-        },
-        {
-          name: "sara",
-          age: 28,
-          status: true,
-          email: "sara@example.com",
-          skills: ["html", "css", "javascript"],
-          address: {
-            street: "789 Pine Rd",
-            city: "Elsewhere",
-          },
-        },
-        {
-          name: "ahmed",
-          age: 22,
-          status: false,
-          email: "ahmed@example.com",
-          skills: ["python", "javascript", "react"],
-          address: {
-            street: "101 Elm St",
-            city: "Nowhere",
-          },
-        },
-        
-      ];
-
-      document.getElementById("card-media-title").textContent = "Students Data";
-      document.getElementById("card-media-p-tag").textContent = "";
-
-      var container = document.getElementById("demoDiv");
-      var html = "";
-
-      var passCount = failCount = 0;
-
-      studentsData.forEach((element) => {
-
-        if (element.status) {
-          passCount++;
-        } else {
-          failCount++;
-        }
-
-        html += `<div class="col-md-6 col-lg-3">
-              <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                  <h5 class="card-title">${element.name}</h5>
-                  <p class="card-text">
-                    Easily build mobile-first layouts with Bootstrap's grid
-                    system.
-                  </p>
-                </div>
-              </div>
-            </div>`;
-      });
-
-      
-
-      container.innerHTML = html;
-
-
-      function showStudentsCount(){
-        var container = document.getElementById("show-totals");
-        var html = "";
-        html +="<div class='col-md-12'><p class='alert alert-warning'>Total Students: "+ studentsData.length +"</p></div>"
-        container.innerHTML = html;
-      }
-
-      //
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>

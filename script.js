@@ -403,9 +403,13 @@ customers.forEach((element) => {
   totalBill += amount;
   const finalBill = calculatefinalBill(amount, surCharges, discount, tax);
 
+  const cardColor = billColor(finalBill, badge);
+  // const badgeValue = badgeValue(finalBill); 
+
   elecHtml += `<div class="col-md-6 col-lg-3">
-               <div class="card h-100 shadow-sm">
+               <div class="card h-100 shadow-sm" ">
                  <div class="card-body">
+                 <span class = "badge mb-3 mt-2" style="background-color: ${cardColor.cardColor};"><h5> ${cardColor.text}</h5></span>
                   <h5 class="card-title">${element.name}</h5>
                    <p class="card-text">
                      <b> Type : </b> ${element.type} <br>
@@ -424,3 +428,28 @@ customers.forEach((element) => {
 elecContainer.innerHTML = elecHtml;
 document.getElementById("bill-amount").innerHTML =
   ` <p>Total Base Amount</p>$ ${totalBill.toFixed(2)}`;
+
+  var badge = document.querySelectorAll(".badge");
+
+
+  function billColor(finalBill, badge) {
+    if(finalBill < 20){
+      return{
+        cardColor: "lightgreen",
+        text: "Low"
+      }
+    }
+    else if (finalBill >= 20 && finalBill <= 80){
+      return {
+        cardColor: "yellow",
+        text: "Medium"
+      };
+    }
+    else{
+      return {
+        cardColor: "lightcoral",
+        text: "High"
+      };
+  }
+  }
+  

@@ -76,7 +76,7 @@ document.getElementById("card-media-p-tag").textContent = "";
 // CREATING CARDS FOR OBJECTS
 
 var container = document.getElementById("demoDiv");
-var html = "";
+var html = `<div class="col-12"><h2 class="mb-2 text-dark text-center mt-3">Students Data</h2></div>`;;
 
 var passCount = (failCount = 0);
 
@@ -172,14 +172,7 @@ function getColor(marks) {
   }
 }
 
-// ASSIGNMENT 2
-// CONVERTING RAW INTO JSON
-
-// Company name and founded year at the top level
-// A departments array
-// Each department has name, manager, and a projects array
-// Each project has name, type, startDate, status, budget, and a team array
-// Each team member has name, age, role, and a skills array
+// COMPANY DATA
 
 const company = {
   name: "Tech Nest",
@@ -302,7 +295,7 @@ company.departments.forEach(function (department) {
               <b>Budget:</b> $ ${project.budget} 
             </p>
             <div class="mt-2">
-              <b>Team:</b>
+            <b>Team:</b>
     `;
 
     project.team.forEach(function (member) {
@@ -351,7 +344,7 @@ document.getElementById("Electricity Bills").textContent = "electricity bills";
 document.getElementById("bill").textContent = "";
 
 var elecContainer = document.querySelector(".elec-bill");
-var elecHtml = "";
+var elecHtml = `<div class="col-12"><h2 class="mb-4 text-dark text-center mt-3">Electricity Bills</h2></div>`;
 var totalBill = 0;
 
 function calculateBaseAmount(units) {
@@ -403,11 +396,10 @@ customers.forEach((element) => {
   totalBill += amount;
   const finalBill = calculatefinalBill(amount, surCharges, discount, tax);
 
-  const cardColor = billColor(finalBill, badge);
-  // const badgeValue = badgeValue(finalBill); 
+  const cardColor = billColor(finalBill);
 
-  elecHtml += `<div class="col-md-6 col-lg-3">
-               <div class="card h-100 shadow-sm" ">
+  elecHtml += `<div class="col-md-6 col-lg-3 mb-3">
+               <div class="card h-100 shadow-sm">
                  <div class="card-body">
                  <span class = "badge mb-3 mt-2" style="background-color: ${cardColor.cardColor};"><h5> ${cardColor.text}</h5></span>
                   <h5 class="card-title">${element.name}</h5>
@@ -426,30 +418,22 @@ customers.forEach((element) => {
 });
 
 elecContainer.innerHTML = elecHtml;
-document.getElementById("bill-amount").innerHTML =
-  ` <p>Total Base Amount</p>$ ${totalBill.toFixed(2)}`;
 
-  var badge = document.querySelectorAll(".badge");
-
-
-  function billColor(finalBill, badge) {
-    if(finalBill < 20){
-      return{
-        cardColor: "lightgreen",
-        text: "Low"
-      }
-    }
-    else if (finalBill >= 20 && finalBill <= 80){
-      return {
-        cardColor: "yellow",
-        text: "Medium"
-      };
-    }
-    else{
-      return {
-        cardColor: "lightcoral",
-        text: "High"
-      };
+function billColor(finalBill) {
+  if (finalBill < 20) {
+    return {
+      cardColor: "lightgreen",
+      text: "Low",
+    };
+  } else if (finalBill >= 20 && finalBill <= 80) {
+    return {
+      cardColor: "yellow",
+      text: "Medium",
+    };
+  } else {
+    return {
+      cardColor: "lightcoral",
+      text: "High",
+    };
   }
-  }
-  
+}

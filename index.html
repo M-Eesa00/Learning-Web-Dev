@@ -144,6 +144,21 @@
               </div>
             </div>
           </div>
+          <div class="row mt-3" >
+            <div class="col-md-2">
+              <button class="btn btn-info" onclick="fetchPostsData()">
+                Fetch Posts
+              </button>
+            </div>
+            
+            <div class="col-md-6">
+              <input type="text" class="form-control" id="weather-city" placeholder="Enter Value" />
+
+              <button class="btn btn-warning" onclick="getWeatherData()">
+                Get Weather Data
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -159,13 +174,13 @@
 
           <div class="row g-4 mb-3" id="demoDiv"></div>
           <div class="row my-4">
-            <div id="show-totals" class="col-md-12">
-
-            </div>
+            <div id="show-totals" class="col-md-12"></div>
           </div>
           <div class="row my-4">
             <div class="col-md-12 text-center">
-              <button class="btn btn-primary" onclick="showStudentsCount()">Show Students Count</button>
+              <button class="btn btn-primary" onclick="showStudentsCount()">
+                Show Students Count
+              </button>
             </div>
           </div>
           <div class="row g-4" id="assignment-container">
@@ -311,7 +326,7 @@
             <div class="col-lg-6">
               <div class="card shadow-sm">
                 <div class="card-body">
-                  <h5 class="card-title">Course schedule table</h5>
+                  <h5 class="card-title">Students table</h5>
                   <p class="text-muted">
                     Tables help organize information cleanly for students and
                     schedules.
@@ -320,40 +335,13 @@
                     <table class="table table-hover align-middle mb-0">
                       <thead class="table-light">
                         <tr>
-                          <th scope="col">Day</th>
-                          <th scope="col">Topic</th>
-                          <th scope="col">Duration</th>
-                          <th scope="col">Level</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">Class</th>
+                          <th scope="col">Age</th>
+                          <th scope="col">Course</th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <tr>
-                          <td>Monday</td>
-                          <td>Bootstrap Grid & Layout</td>
-                          <td>90 min</td>
-                          <td>
-                            <span class="badge bg-success">Beginner</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Wednesday</td>
-                          <td>Components & Utilities</td>
-                          <td>90 min</td>
-                          <td>
-                            <span class="badge bg-primary">Intermediate</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Friday</td>
-                          <td>Forms, Modals & Interactions</td>
-                          <td>90 min</td>
-                          <td>
-                            <span class="badge bg-warning text-dark"
-                              >Advanced</span
-                            >
-                          </td>
-                        </tr>
-                      </tbody>
+                      <tbody id="student-details-tbl"></tbody>
                     </table>
                   </div>
                 </div>
@@ -592,7 +580,6 @@
             city: "Nowhere",
           },
         },
-        
       ];
 
       document.getElementById("card-media-title").textContent = "Students Data";
@@ -601,10 +588,9 @@
       var container = document.getElementById("demoDiv");
       var html = "";
 
-      var passCount = failCount = 0;
+      var passCount = (failCount = 0);
 
       studentsData.forEach((element) => {
-
         if (element.status) {
           passCount++;
         } else {
@@ -624,16 +610,59 @@
             </div>`;
       });
 
-      
-
       container.innerHTML = html;
 
-
-      function showStudentsCount(){
+      function showStudentsCount() {
         var container = document.getElementById("show-totals");
         var html = "";
-        html +="<div class='col-md-12'><p class='alert alert-warning'>Total Students: "+ studentsData.length +"</p></div>"
+        html +=
+          "<div class='col-md-12'><p class='alert alert-warning'>Total Students: " +
+          studentsData.length +
+          "</p></div>";
         container.innerHTML = html;
+      }
+
+      var studentTable = document.getElementById("student-details-tbl");
+      studentsData.forEach((student) => {
+        var row = `<tr><td>${student.name}</td><td>${student.age}</td><td>${
+          student.email
+        }</td><td>${student.skills.join(", ")}</td></tr>`;
+        studentTable.innerHTML += row;
+      });
+
+      //making a functoin that will send http request to a server and get data from it and then display it in the table
+      function fetchPostsData() {
+        fetch("https://jsonplaceholder.typicode.com/posts")
+          .then((response) => response.json())
+          .then((data) => {
+            //whatever
+            var postsTable = document.getElementById("student-details-tbl");
+            postsTable.innerHTML = "";
+
+            data.forEach((post) => {
+              var row = `<tr><td>${post.id}</td><td>${post.title}</td><td>${post.body}</td></tr>`;
+              postsTable.innerHTML += row;
+            });
+          })
+          .catch((error) => console.error("Error fetching posts:", error));
+      }
+
+      function getWeatherData() {
+        const url =
+          "https://api.openweathermap.org/data/2.5/weather?q=sargodha&appid=5952336d7cab3212d24fc724b859d143";
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            var weatherData = data;
+            console.log("Weather Temperature: " + weatherData.main.temp);
+            console.log(
+              "Weather Description: " + weatherData.weather[0].description
+            );
+          })
+          .catch((error) =>
+            console.error("Error fetching weather data:", error)
+          );
       }
 
       //
